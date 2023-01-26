@@ -67,16 +67,20 @@ fileprivate func shouldEraseSpans(_ response: URLResponse?) -> Bool {
     }
 }
 
-fileprivate func buildRequest(url: URL, data: Data) -> URLRequest {
+fileprivate func buildRequest(url: URL, data: Data, token: String) -> URLRequest {
     var req = URLRequest(url: url)
     req.httpMethod = "POST"
     req.addValue("application/json", forHTTPHeaderField: "Content-Type")
+    req.addValue("Basic \(token)", forHTTPHeaderField: "Authorization")
+    
     req.httpBody = data
+    print("REQUEST")
+    print(req)
     return req
 }
 
 class SpanFromDiskExport {
-    @discardableResult static func start(spanDb: SpanDb, endpoint: String) -> (() -> Void) {
+    @discardableResult static func start(spanDb: SpanDb, endpoint: String, token: String) -> (() -> Void) {
         guard let url = URL(string: endpoint) else {
             print("SpanFromDiskExport: malformed endpoint URL: \(endpoint)")
             return {}
@@ -115,13 +119,16 @@ class SpanFromDiskExport {
             }
 
             let spans = spanDb.fetch(count: 64)
+            print("spans")
+            print(spans)
 
             if spans.isEmpty {
                 return
             }
 
             let payload = preparePayload(spans: spans, contentLengthLimit: MAX_CONTENT_LENGTH)
-            let req = buildRequest(url: url, data: payload.content)
+            let req = buildRequest(url: url, data: payload.content, token: token)
+            print(req)
 
             let sem = DispatchSemaphore(value: 0)
 
@@ -135,6 +142,7 @@ class SpanFromDiskExport {
                     loopDelayMs = 50
                 } else {
                     print("Failed to upload spans: \(error.debugDescription)")
+                    print(resp!)
                 }
                 bytesSent = payload.content.count
 

@@ -38,6 +38,7 @@ export interface ReactNativeConfiguration {
   beaconEndpoint?: string;
   rumAccessToken?: string;
   applicationName: string;
+  exporterType: string;
   environment?: string;
   appStart?: boolean;
   debug?: boolean;

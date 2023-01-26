@@ -1,0 +1,21 @@
+{
+  "annotations": [],
+  "id": "17cee198cb637634",
+  "traceId": "a5ebcd08880267d6ac3df2be487c7ce0",
+  "duration": 5110700,
+  "timestamp": 1673925473142300,
+  "name": "AppStart",
+  "tags": {
+    "device.model.name": "Simulator (iPhone 14 Pro)",
+    "splunk.rumSessionId": "2a0847c73c9591fb14ba2c2d97e0fa5b",
+    "os.name": "iOS",
+    "start.type": "cold",
+    "screen.name": "Home",
+    "component": "appstart",
+    "os.version": "16.2",
+    "telemetry.sdk.name": "@splunk/otel-react-native",
+    "splunk.rumVersion": "0.2.0",
+    "app": "reactNativeTest",
+    "telemetry.sdk.version": "0.2.0"
+  }
+}

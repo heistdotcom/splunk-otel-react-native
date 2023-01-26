@@ -30,6 +30,7 @@ export function startNavigationTracking(navigationRef: any) {
   current = navigationRef.getCurrentRoute()?.name;
   setGlobalAttributes({ [SCREEN_NAME]: current });
   createUiSpan(tracer);
+  console.log('Tracer', tracer);
 
   if (navigationRef) {
     navigationRef.addListener('state', () => {
@@ -50,6 +51,7 @@ function createUiSpan(tracer: any, previous?: string) {
   span.setAttribute('component', 'ui');
   if (previous) {
     span.setAttribute(LAST_SCREEN_NAME, previous);
+    console.log('Span', span);
   }
   span.end();
 }

@@ -41,7 +41,7 @@ export default class ReacNativeSpanExporter implements SpanExporter {
   }
 
   toZipkin(span: ReadableSpan) {
-    const zipkinSpan = toZipkinSpan(span, 'servicenamegoeshere');
+    const zipkinSpan = toZipkinSpan(span, 'heist.mobile');
     diag.debug(
       'Exporting:zipkinTonativeSpan',
       zipkinSpan.name,
