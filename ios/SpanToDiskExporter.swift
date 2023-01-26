@@ -37,15 +37,17 @@ limitations under the License.
 class SpanToDiskExporter {
     let db: SpanDb
     let maxFileSizeBytes: Int64
+    let exportType: String
     // Count of spans to insert before checking whether truncation is necessary
     let truncationCheckpoint: Int64
     private var totalSpansInserted: Int64 = 0
     private var checkpointCounter: Int64 = 0
 
-    init(spanDb: SpanDb, maxFileSizeBytes: Int64 = 25 * 1024 * 1024, truncationCheckpoint: Int64 = 512) {
+    init(spanDb: SpanDb, maxFileSizeBytes: Int64 = 25 * 1024 * 1024, truncationCheckpoint: Int64 = 512, exportType: String) {
         self.db = spanDb
         self.maxFileSizeBytes = maxFileSizeBytes
         self.truncationCheckpoint = truncationCheckpoint
+        self.exportType = exportType
     }
 
     public func shutdown() {}
@@ -55,11 +57,16 @@ class SpanToDiskExporter {
         if !db.ready() {
             return false
         }
+        
+        print("Preprocessed Spans")
+        print(spans)
 
-        let zipkinSpans = ZipkinTransform.toZipkinSpans(spans: spans)
-
-        if !db.store(spans: zipkinSpans) {
-            return true
+        if(exportType == "zipkin"){
+            let zipkinSpans = ZipkinTransform.toZipkinSpans(spans: spans)
+            
+            if !db.store(spans: zipkinSpans) {
+                return true
+            }
         }
 
         let inserted = Int64(spans.count)

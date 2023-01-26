@@ -44,12 +44,18 @@ class SplunkOtelReactNative: NSObject {
           return
       }
       var beaconWithAuth = beaconUrl!
-      beaconWithAuth += "?auth=" + auth!
+      //beaconWithAuth += "?auth=" + auth!
+
+      let exporterType = config["exporterType"] as? String
+      if exporterType == nil {
+          reject("error", "Missing exporter type", nil)
+          return
+      }
 
       let db = SpanDb()
-      spanExporter = SpanToDiskExporter(spanDb: db)
+      spanExporter = SpanToDiskExporter(spanDb: db, exportType: exporterType!)
 
-      SpanFromDiskExport.start(spanDb: db, endpoint: beaconWithAuth)
+      SpanFromDiskExport.start(spanDb: db, endpoint: beaconWithAuth, token: auth!)
 
       resolve(appStartTime.timeIntervalSince1970 * 1000)
     }

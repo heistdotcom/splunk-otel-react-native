@@ -66,16 +66,17 @@ public class SplunkOtelReactNativeModule extends ReactContextBaseJavaModule {
     String beaconEndpoint = mapReader.getBeaconEndpoint();
     String accessToken = mapReader.getRumAccessToken();
 
-    if (beaconEndpoint == null || accessToken == null) {
+    if (beaconEndpoint == null /*|| accessToken == null*/) {
       reportFailure(promise, "Initialize: cannot construct exporter, endpoint or token missing");
       return;
     }
 
-    String endpointWithAuthentication = beaconEndpoint + "?auth=" + accessToken;
+    String endpointWithAuthentication = beaconEndpoint; //+ "?auth=" + accessToken;
 
     exporter = new ZipkinSpanExporterBuilder()
       .setEndpoint(endpointWithAuthentication)
       .setEncoder(new CustomZipkinEncoder())
+      .setAdditionalHeaders({})
       .build();
 
     promise.resolve((double) moduleStartTime);

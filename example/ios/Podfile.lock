@@ -596,7 +596,7 @@ SPEC CHECKSUMS:
   ReactCommon: c9246996e73bf75a2c6c3ff15f1e16707cdc2da9
   RNScreens: 34cc502acf1b916c582c60003dc3089fa01dc66d
   SocketRocket: fccef3f9c5cedea1353a9ef6ada904fde10d6608
-  splunk-otel-react-native: e0153f4c238f07bb73f3c978baf003572018515e
+  splunk-otel-react-native: ba4c21242adba9ca2f45b422c7725735b75804c2
   Yoga: eca980a5771bf114c41a754098cd85e6e0d90ed7
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 

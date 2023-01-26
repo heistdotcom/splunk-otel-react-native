@@ -35,9 +35,10 @@ const SplunkOtelReactNative = NativeModules.SplunkOtelReactNative
 
 export interface ReactNativeConfiguration {
   realm?: string;
-  beaconEndpoint: string;
-  rumAccessToken: string;
+  beaconEndpoint?: string;
+  rumAccessToken?: string;
   applicationName: string;
+  exporterType: string;
   environment?: string;
   appStart?: boolean;
   debug?: boolean;

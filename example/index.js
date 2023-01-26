@@ -20,9 +20,9 @@ import { name as appName } from './app.json';
 import { SplunkRum } from '@splunk/otel-react-native';
 
 export const Rum = SplunkRum.init({
-  realm: 'us0',
+  beaconEndpoint: 'http://otel.heist.com:4318/v1/traces',
   applicationName: 'reactNativeTest',
-  rumAccessToken: 'test',
+  //rumAccessToken: 'test',
   debug: true,
 });
 
