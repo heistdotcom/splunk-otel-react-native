@@ -120,6 +120,7 @@ export const SplunkRum: SplunkRumType = {
       nativeSdkConf.beaconEndpoint = config.beaconEndpoint;
     }
     nativeSdkConf.rumAccessToken = config.rumAccessToken;
+    nativeSdkConf.exporterType = config.exporterType;
 
     diag.debug(
       'Initializing with: ',

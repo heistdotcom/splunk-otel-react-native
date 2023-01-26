@@ -47,6 +47,7 @@ export interface ReactNativeConfiguration {
 export interface NativeSdKConfiguration {
   beaconEndpoint?: string;
   rumAccessToken?: string;
+  exporterType?: string;
 }
 //TODO should probably not export this
 export function initializeNativeSdk(
