@@ -57,17 +57,13 @@ class SpanToDiskExporter {
         if !db.ready() {
             return false
         }
-        
-        print("Preprocessed Spans")
-        print(spans)
 
-        if(exportType == "zipkin"){
-            let zipkinSpans = ZipkinTransform.toZipkinSpans(spans: spans)
-            
-            if !db.store(spans: zipkinSpans) {
-                return true
-            }
+        let zipkinSpans = ZipkinTransform.toZipkinSpans(spans: spans)
+        
+        if !db.store(spans: zipkinSpans) {
+            return true
         }
+        
 
         let inserted = Int64(spans.count)
         checkpointCounter += inserted

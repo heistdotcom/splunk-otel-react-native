@@ -191,9 +191,9 @@ export function toZipkinSpan(span: ReadableSpan, serviceName: string): Span {
   //     : undefined,
   // };
   const zipkinSpan: Span = {
-    id: '352bff9a74ca9ad2',
-    traceId: '5af7183fb1d4cf5c',
-    parentId: '6b221d5bc9e6496c',
+    id: span.spanContext().spanId,
+    traceId: span.spanContext().traceId,
+    parentId: span.parentSpanId,
     name: serviceName,
     timestamp: 1556604172355737,
     duration: 1431,

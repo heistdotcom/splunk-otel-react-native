@@ -39,6 +39,10 @@ fileprivate func preparePayload(spans: [(Int64, String)], contentLengthLimit: In
         }
     }
 
+    print("Payload Spans")
+    print(payloadSpans)
+    print("[\(payloadSpans.joined(separator: ","))]".utf8)
+
     let content = Data("[\(payloadSpans.joined(separator: ","))]".utf8)
     return Payload(content: content, ids: ids)
 }
@@ -75,7 +79,7 @@ fileprivate func buildRequest(url: URL, data: Data, token: String) -> URLRequest
     
     req.httpBody = data
     print("REQUEST")
-    print(req)
+    print(data)
     return req
 }
 
@@ -128,6 +132,7 @@ class SpanFromDiskExport {
 
             let payload = preparePayload(spans: spans, contentLengthLimit: MAX_CONTENT_LENGTH)
             let req = buildRequest(url: url, data: payload.content, token: token)
+            print("After Request")
             print(req)
 
             let sem = DispatchSemaphore(value: 0)
