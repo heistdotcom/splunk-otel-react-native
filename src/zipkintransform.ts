@@ -45,7 +45,7 @@ export interface Span {
    * When present, kind clarifies timestamp, duration and remoteEndpoint.
    * When absent, the span is local or incomplete.
    */
-  kind?: ZipkinSpanKind;
+  kind?: string;
   /**
    * Epoch microseconds of the start of this span, possibly absent if
    * incomplete.
@@ -165,12 +165,7 @@ export interface Tags {
  *   duration is the delay consuming the message, such as from backlog.
  *   remoteEndpoint - Represents the broker. Leave serviceName absent if unknown.
  */
-export enum ZipkinSpanKind {
-  CLIENT = 'CLIENT',
-  SERVER = 'SERVER',
-  CONSUMER = 'CONSUMER',
-  PRODUCER = 'PRODUCER',
-}
+\
 
 export const defaultStatusCodeTagName = 'otel.status_code';
 export const defaultStatusErrorTagName = 'error';
@@ -203,7 +198,7 @@ export function toZipkinSpan(span: ReadableSpan, serviceName: string): Span {
     name: serviceName,
     timestamp: 1556604172355737,
     duration: 1431,
-    kind: ZipkinSpanKind.SERVER,
+    kind: 'server',
     localEndpoint: {
       serviceName: 'ShawnaTestHardcode',
       ipv4: '192.168.99.1',
