@@ -137,10 +137,10 @@ export const SplunkRum: SplunkRumType = {
       );
       //TODO refactor appStart
       if (config.appStart) {
-        const tracer = provider.getTracer('AppStart');
+        const tracer = provider.getTracer('ShawnaAppStart');
         const nativeInitEnd = Date.now();
 
-        this.appStart = tracer.startSpan('AppStart', {
+        this.appStart = tracer.startSpan('ShawnaAppStartSpan', {
           startTime: appStartTime,
           attributes: {
             'component': 'appstart',
