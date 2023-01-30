@@ -82,6 +82,10 @@ export interface Span {
    * When an RPC (or messaging) span, indicates the other side of the
    * connection.
    */
+  remoteEndpoint: {
+    ipv4: string;
+    port: number;
+  };
 }
 
 /**
@@ -208,7 +212,7 @@ export function toZipkinSpan(span: ReadableSpan, serviceName: string): Span {
     name: 'get /api',
     timestamp: 1556604172355737,
     duration: 1431,
-    kind: 'SERVER',
+    kind: ZipkinSpanKind.SERVER,
     localEndpoint: {
       serviceName: 'ShawnaTestHardcode',
       ipv4: '192.168.99.1',
