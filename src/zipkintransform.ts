@@ -165,7 +165,6 @@ export interface Tags {
  *   duration is the delay consuming the message, such as from backlog.
  *   remoteEndpoint - Represents the broker. Leave serviceName absent if unknown.
  */
-\
 
 export const defaultStatusCodeTagName = 'otel.status_code';
 export const defaultStatusErrorTagName = 'error';
