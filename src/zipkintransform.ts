@@ -187,19 +187,41 @@ export const defaultStatusErrorTagName = 'error';
 export function toZipkinSpan(span: ReadableSpan, serviceName: string): Span {
   console.log('BEFORE ZIPKIN SPAN', span);
 
+  // const zipkinSpan: Span = {
+  //   traceId: span.spanContext().traceId,
+  //   parentId: span.parentSpanId,
+  //   name: span.name,
+  //   id: span.spanContext().spanId,
+  //   kind: ZIPKIN_SPAN_KIND_MAPPING[span.kind],
+  //   timestamp: hrTimeToMicroseconds(span.startTime),
+  //   duration: hrTimeToMicroseconds(span.duration),
+  //   localEndpoint: { serviceName },
+  //   tags: _toZipkinTags(span.attributes, span.status), //omitted span.resource
+  //   annotations: span.events.length
+  //     ? _toZipkinAnnotations(span.events)
+  //     : undefined,
+  // };
   const zipkinSpan: Span = {
-    traceId: span.spanContext().traceId,
-    parentId: span.parentSpanId,
-    name: span.name,
-    id: span.spanContext().spanId,
-    kind: ZIPKIN_SPAN_KIND_MAPPING[span.kind],
-    timestamp: hrTimeToMicroseconds(span.startTime),
-    duration: hrTimeToMicroseconds(span.duration),
-    localEndpoint: { serviceName },
-    tags: _toZipkinTags(span.attributes, span.status), //omitted span.resource
-    annotations: span.events.length
-      ? _toZipkinAnnotations(span.events)
-      : undefined,
+    id: '352bff9a74ca9ad2',
+    traceId: '5af7183fb1d4cf5f',
+    parentId: '6b221d5bc9e6496c',
+    name: 'get /api',
+    timestamp: 1556604172355737,
+    duration: 1431,
+    kind: 'SERVER',
+    localEndpoint: {
+      serviceName: 'ShawnaTestHardcode',
+      ipv4: '192.168.99.1',
+      port: 3306,
+    },
+    remoteEndpoint: {
+      ipv4: '172.19.0.2',
+      port: 58648,
+    },
+    tags: {
+      'http.method': 'GET',
+      'http.path': '/api',
+    },
   };
 
   console.log('ZIPKIN SPAN', zipkinSpan);
