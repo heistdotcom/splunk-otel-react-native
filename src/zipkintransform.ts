@@ -172,15 +172,6 @@ export enum ZipkinSpanKind {
   PRODUCER = 'PRODUCER',
 }
 
-const ZIPKIN_SPAN_KIND_MAPPING = {
-  [api.SpanKind.CLIENT]: ZipkinSpanKind.CLIENT,
-  [api.SpanKind.SERVER]: ZipkinSpanKind.SERVER,
-  [api.SpanKind.CONSUMER]: ZipkinSpanKind.CONSUMER,
-  [api.SpanKind.PRODUCER]: ZipkinSpanKind.PRODUCER,
-  // When absent, the span is local.
-  [api.SpanKind.INTERNAL]: undefined,
-};
-
 export const defaultStatusCodeTagName = 'otel.status_code';
 export const defaultStatusErrorTagName = 'error';
 
@@ -212,7 +203,7 @@ export function toZipkinSpan(span: ReadableSpan, serviceName: string): Span {
     name: serviceName,
     timestamp: 1556604172355737,
     duration: 1431,
-    kind: ZIPKIN_SPAN_KIND_MAPPING[0],
+    kind: ZipkinSpanKind.SERVER,
     localEndpoint: {
       serviceName: 'ShawnaTestHardcode',
       ipv4: '192.168.99.1',
