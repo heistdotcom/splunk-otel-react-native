@@ -209,7 +209,7 @@ export function toZipkinSpan(span: ReadableSpan, serviceName: string): Span {
     id: '352bff9a74ca9ad2',
     traceId: '5af7183fb1d4cf5f',
     parentId: '6b221d5bc9e6496c',
-    name: 'get /api',
+    name: serviceName,
     timestamp: 1556604172355737,
     duration: 1431,
     kind: ZipkinSpanKind.SERVER,
