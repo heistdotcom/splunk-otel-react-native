@@ -198,7 +198,7 @@ export function toZipkinSpan(span: ReadableSpan, serviceName: string): Span {
   // };
   const zipkinSpan: Span = {
     id: '352bff9a74ca9ad2',
-    traceId: '5af7183fb1d4cf5f',
+    traceId: '5af7183fb1d4cf5c',
     parentId: '6b221d5bc9e6496c',
     name: serviceName,
     timestamp: 1556604172355737,
