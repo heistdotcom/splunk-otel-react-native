@@ -212,7 +212,7 @@ export function toZipkinSpan(span: ReadableSpan, serviceName: string): Span {
     name: serviceName,
     timestamp: 1556604172355737,
     duration: 1431,
-    kind: ZipkinSpanKind.SERVER,
+    kind: ZIPKIN_SPAN_KIND_MAPPING[0],
     localEndpoint: {
       serviceName: 'ShawnaTestHardcode',
       ipv4: '192.168.99.1',
