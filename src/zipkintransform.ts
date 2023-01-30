@@ -185,6 +185,8 @@ export const defaultStatusErrorTagName = 'error';
  * @param span Span to be translated
  */
 export function toZipkinSpan(span: ReadableSpan, serviceName: string): Span {
+  console.log('BEFORE ZIPKIN SPAN', span);
+
   const zipkinSpan: Span = {
     traceId: span.spanContext().traceId,
     parentId: span.parentSpanId,
@@ -199,6 +201,8 @@ export function toZipkinSpan(span: ReadableSpan, serviceName: string): Span {
       ? _toZipkinAnnotations(span.events)
       : undefined,
   };
+
+  console.log('ZIPKIN SPAN', zipkinSpan);
 
   return zipkinSpan;
 }
